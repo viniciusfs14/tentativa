@@ -2,10 +2,12 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bom Dia!</title>
   <style>
     body {
       margin: 0;
+      padding: 20px;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
       flex-direction: column;
@@ -14,17 +16,20 @@
       height: 100vh;
       background: linear-gradient(to top right, #f319b2fd, #845279f0);
       text-align: center;
+      box-sizing: border-box;
     }
 
     button {
-      padding: 15px 30px;
-      font-size: 1.2rem;
+      padding: 12px 24px;
+      font-size: 1.1rem;
       background-color: rgb(252, 3, 211);
       color: white;
       border: 2px solid black;
       border-radius: 8px;
       cursor: pointer;
       transition: 0.3s;
+      width: 90%;
+      max-width: 300px;
     }
 
     button:hover {
@@ -33,19 +38,32 @@
     }
 
     #mensagem {
-      font-size: 1.5rem;
-      margin-top: 30px;
+      font-size: 1.2rem;
+      margin-top: 20px;
       white-space: pre-wrap;
       min-height: 2em;
       color: white;
+      padding: 0 10px;
+      max-width: 90vw;
     }
 
     #imagem {
       margin-top: 20px;
       opacity: 0;
       transition: opacity 2s ease-in;
-      max-width: 300px;
+      width: 80%;
+      max-width: 250px;
       border-radius: 16px;
+    }
+
+    @media (min-width: 600px) {
+      #mensagem {
+        font-size: 1.5rem;
+      }
+
+      button {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
