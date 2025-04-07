@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Bom Dia!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to top right, #f319b2fd, #845279f0);
+      text-align: center;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background-color: rgb(252, 3, 211);
+      color: white;
+      border: 2px solid black;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    #mensagem {
+      font-size: 1.5rem;
+      margin-top: 30px;
+      white-space: pre-wrap;
+      min-height: 2em;
+      color: white;
+    }
+
+    #imagem {
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 2s ease-in;
+      max-width: 300px;
+      border-radius: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="mostrarMensagem()">Toque aqui para receber um bom dia</button>
+
+  <div id="mensagem"></div>
+  <img id="imagem" src="https://images.fineartamerica.com/images/artworkimages/medium/3/hello-kitty-and-dear-daniel-valentine-peru-luka-transparent.png" alt="Bom dia" />
+
+  <script>
+    function mostrarMensagem() {
+      const texto = "Bom diaa bem 💚 \n\n Acho que se pah esse é o bom dia mais criativo hein kkkkk";
+      const div = document.getElementById('mensagem');
+      const imagem = document.getElementById('imagem');
+      let index = 0;
+
+      div.innerHTML = "";
+      imagem.style.opacity = 0;
+
+      const escrever = setInterval(() => {
+        div.innerHTML += texto.charAt(index);
+        index++;
+        if (index === texto.length) {
+          clearInterval(escrever);
+          setTimeout(() => {
+            imagem.style.opacity = 1;
+          }, 500);
+        }
+      }, 60);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Bom Dia com Hello Kitty</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to top right, #ffe0f0, #ffd1dc);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background-color: white;
+      color: #ff69b4;
+      border: 2px solid #ff69b4;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 2;
+    }
+
+    button:hover {
+      background-color: #ff69b4;
+      color: white;
+    }
+
+    #mensagem {
+      font-size: 1.5rem;
+      margin-top: 30px;
+      white-space: pre-wrap;
+      min-height: 4em;
+      z-index: 2;
+    }
+
+    #imagem {
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 2s ease-in;
+      max-width: 300px;
+      border-radius: 16px;
+    }
+
+    #kitty {
+      position: absolute;
+      bottom: 50px;
+      left: -150px;
+      width: 120px;
+      transition: left 3s ease-in-out;
+    }
+
+    #heart {
+      position: absolute;
+      width: 80px;
+      bottom: 130px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 1s ease-in;
+    }
+
+    #heart.show {
+      opacity: 1;
+    }
+
+  </style>
+</head>
+<body>
+
+  <button onclick="mostrarMensagem()">Clique para receber um bom dia</button>
+
+  <div id="mensagem"></div>
+  <img id="imagem" src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80" alt="Bom dia" />
+
+  <img id="kitty" src="https://images.fineartamerica.com/images/artworkimages/medium/3/hello-kitty-and-dear-daniel-valentine-peru-luka-transparent.png" alt="Hello Kitty" />
+
+  <img id="heart" src="💚" alt="Coração" />
+
+  <script>
+    function mostrarMensagem() {
+      const texto = "Bom dia!\n\nHoje é um novo dia cheio de oportunidades.\nAproveite cada momento e siga com confiança! 🌞";
+      const div = document.getElementById('mensagem');
+      const imagem = document.getElementById('imagem');
+      const kitty = document.getElementById('kitty');
+      const heart = document.getElementById('heart');
+
+      let index = 0;
+      div.innerHTML = "";
+      imagem.style.opacity = 0;
+      kitty.style.left = "-150px";
+      heart.classList.remove("show");
+
+      const escrever = setInterval(() => {
+        div.innerHTML += texto.charAt(index);
+        index++;
+        if (index === texto.length) {
+          clearInterval(escrever);
+          setTimeout(() => {
+            imagem.style.opacity = 1;
+            kitty.style.left = "calc(50% - 60px)"; // move kitty pro centro
+          }, 500);
+
+          setTimeout(() => {
+            heart.classList.add("show");
+          }, 3800); // mostra o coração depois que a Hello Kitty chega
+        }
+      }, 50);
+    }
+  </script>
+
+</body>
+</html>
