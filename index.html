@@ -31,6 +31,7 @@
       cursor: pointer;
       transition: 0.3s;
       z-index: 2;
+      margin-top: 20px;
     }
 
     button:hover {
@@ -48,7 +49,7 @@
       max-width: 90vw;
     }
 
-    #gif {
+    #gif, #nos {
       margin-top: 20px;
       opacity: 0;
       display: none;
@@ -58,15 +59,33 @@
       border-radius: 16px;
     }
 
-    #nos {
-    margin-top: 20px;
-    opacity: 0;
-    display: none;
-    transition: opacity 2s ease-in;
-    width: 80%;
-    max-width: 250px;
-    border-radius: 16px;
+    #final-msg {
+      font-size: 1.5rem;
+      color: green;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
     }
+
+    .heart {
+      position: absolute;
+      font-size: 2rem;
+      color: #32CD32; /* verde limão */
+      animation: subir 2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes subir {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-200px) scale(0.5);
+        opacity: 0;
+      }
+    }
+
     @media (min-width: 600px) {
       #mensagem {
         font-size: 1.5rem;
@@ -83,22 +102,32 @@
   <button onclick="mostrarMensagem()">Toque aqui para receber um bom dia</button>
 
   <div id="mensagem"></div>
+
   <img id="gif" src="https://media.tenor.com/sLcT11HE4tkAAAAM/hello-kitty-dance.gif" alt="Hello Kitty dançando" />
-  <img id="nos" src="imgs/nos.jpeg"/>
-  
+
+  <button id="botao2" style="display: none;" onclick="mostrarNos()">Clique aqui também 😊</button>
+
+  <img id="nos" src="imgs/nos.jpeg" alt="Nós dois 💚" />
+
+  <div id="final-msg">nos dois em desenho haha</div>
+
   <script>
     function mostrarMensagem() {
       const texto = "Bom diaa meu bem 💚 \n\n Passando aqui para te desejar um excelente dia, mas para fugir da mesma coisa de sempre, fiz esse site aqui hehe";
       const div = document.getElementById('mensagem');
       const gif = document.getElementById('gif');
       const nos = document.getElementById('nos');
+      const botao2 = document.getElementById('botao2');
+      const finalMsg = document.getElementById('final-msg');
 
       gif.style.display = "none";
       gif.style.opacity = 0;
       nos.style.display = "none";
       nos.style.opacity = 0;
-      let index = 0;
+      botao2.style.display = "none";
+      finalMsg.style.opacity = 0;
 
+      let index = 0;
       div.innerHTML = "";
 
       const escrever = setInterval(() => {
@@ -108,14 +137,42 @@
           clearInterval(escrever);
           setTimeout(() => {
             gif.style.display = "block";
-            nos.style.display = "block";
             setTimeout(() => {
               gif.style.opacity = 1;
-              nos.style.opacity = 1;
+              botao2.style.display = "inline-block";
             }, 50);
           }, 500);
         }
       }, 60);
+    }
+
+    function mostrarNos() {
+      const nos = document.getElementById('nos');
+      const finalMsg = document.getElementById('final-msg');
+
+      nos.style.display = "block";
+      setTimeout(() => {
+        nos.style.opacity = 1;
+        explodirCoracoes();
+        setTimeout(() => {
+          finalMsg.style.opacity = 1;
+        }, 1500);
+      }, 50);
+    }
+
+    function explodirCoracoes() {
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerText = '💚';
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.top = `${window.innerHeight - 50}px`;
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 2000);
+      }
     }
   </script>
 
