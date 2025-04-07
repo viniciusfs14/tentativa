@@ -47,15 +47,25 @@
       max-width: 90vw;
     }
 
-    #imagem {
+    #gif {
       margin-top: 20px;
       opacity: 0;
+      display: none;
       transition: opacity 2s ease-in;
       width: 80%;
       max-width: 250px;
       border-radius: 16px;
     }
 
+    #nos {
+    margin-top: 20px;
+    opacity: 0;
+    display: none;
+    transition: opacity 2s ease-in;
+    width: 80%;
+    max-width: 250px;
+    border-radius: 16px;
+    }
     @media (min-width: 600px) {
       #mensagem {
         font-size: 1.5rem;
@@ -72,16 +82,23 @@
   <button onclick="mostrarMensagem()">Toque aqui para receber um bom dia</button>
 
   <div id="mensagem"></div>
-  <img id="gif" src="https://i.pinimg.com/originals/a1/b3/b1/a1b3b1492a379333ea53b0f795eaf86f.gif" />
+  <img id="gif" src="https://media.tenor.com/sLcT11HE4tkAAAAM/hello-kitty-dance.gif" alt="Hello Kitty dançando" />
+  <img id="nos" src="imgs/nos.jpeg"/>
+  
   <script>
     function mostrarMensagem() {
       const texto = "Bom diaa meu bem 💚 \n\n Passando aqui para te desejar um excelente dia, mas para fugir da mesma coisa de sempre, fiz esse site aqui hehe";
       const div = document.getElementById('mensagem');
       const gif = document.getElementById('gif');
+      const nos = document.getElementById('nos');
+
+      gif.style.display = "none";
+      gif.style.opacity = 0;
+      nos.style.display = "none";
+      nos.style.opacity = 0;
       let index = 0;
 
       div.innerHTML = "";
-      gif.style.opacity = 0;
 
       const escrever = setInterval(() => {
         div.innerHTML += texto.charAt(index);
@@ -89,7 +106,12 @@
         if (index === texto.length) {
           clearInterval(escrever);
           setTimeout(() => {
-            gif.style.opacity = 1;
+            gif.style.display = "block";
+            nos.style.display = "block";
+            setTimeout(() => {
+              gif.style.opacity = 1;
+              nos.style.opacity = 1;
+            }, 50);
           }, 500);
         }
       }, 60);
