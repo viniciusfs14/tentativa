@@ -72,17 +72,16 @@
   <button onclick="mostrarMensagem()">Toque aqui para receber um bom dia</button>
 
   <div id="mensagem"></div>
-  <img id="imagem" src="https://images.fineartamerica.com/images/artworkimages/medium/3/hello-kitty-and-dear-daniel-valentine-peru-luka-transparent.png" alt="Bom dia" />
-
+  <img id="gif" src="https://i.pinimg.com/originals/a1/b3/b1/a1b3b1492a379333ea53b0f795eaf86f.gif" />
   <script>
     function mostrarMensagem() {
       const texto = "Bom diaa meu bem 💚 \n\n Passando aqui para te desejar um excelente dia, mas para fugir da mesma coisa de sempre, fiz esse site aqui hehe";
       const div = document.getElementById('mensagem');
-      const imagem = document.getElementById('imagem');
+      const gif = document.getElementById('gif');
       let index = 0;
 
       div.innerHTML = "";
-      imagem.style.opacity = 0;
+      gif.style.opacity = 0;
 
       const escrever = setInterval(() => {
         div.innerHTML += texto.charAt(index);
@@ -90,7 +89,7 @@
         if (index === texto.length) {
           clearInterval(escrever);
           setTimeout(() => {
-            imagem.style.opacity = 1;
+            gif.style.opacity = 1;
           }, 500);
         }
       }, 60);
